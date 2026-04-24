@@ -1,0 +1,17 @@
+Package: SundusGenome1
+Type: Package
+Title: Genome Analysis Package
+Version: 0.1.0
+Author: Your Name
+Description: Simple genome analysis using S4 and Rcpp
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    methods,
+    Rcpp,
+    RcppArmadillo
+LinkingTo:
+    Rcpp,
+    RcppArmadillo
+RoxygenNote: 7.3.3

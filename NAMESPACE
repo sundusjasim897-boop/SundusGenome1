@@ -1,0 +1,7 @@
+useDynLib(SundusGenome1, .registration = TRUE)
+importFrom(Rcpp, evalCpp)
+
+export(sumCpp)
+export(add_vecs)
+export(subset_vec)
+export(avgProteinPerCh)

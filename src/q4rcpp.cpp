@@ -1,0 +1,24 @@
+#include <RcppArmadillo.h>
+// [[Rcpp::depends(RcppArmadillo)]]
+
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+int sumCpp(IntegerVector x){
+  int res = 0;
+  for(int i = 0; i < x.size(); i++){
+    res += x[i];
+  }
+  return res;
+}
+
+// [[Rcpp::export]]
+arma::vec add_vecs(arma::vec a, arma::vec b){
+  return a + b;
+}
+
+// [[Rcpp::export]]
+arma::vec subset_vec(arma::vec a, arma::vec b){
+  arma::uvec idx = find(b > 1);
+  return a.elem(idx);
+}
