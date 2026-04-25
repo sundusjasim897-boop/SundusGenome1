@@ -1,0 +1,133 @@
+# SundusGenome1
+
+**Author:** Sundus Jasim  
+**Course:** 1501318 – Programming for Bioinformatics, Spring 2025/2026  
+**Assignment:** Midterm Substitute – Building and Publishing an R Package
+
+---
+
+## Package Overview
+
+`SundusGenome1` is an R package that provides:
+
+| Component | Description |
+|---|---|
+| **`Genome` (S4 class)** | Stores a genome's name, chromosome count, and protein count |
+| **`avgProteinPerCh()`** | Computes the average proteins per chromosome (rounded to nearest integer) |
+
+---
+
+## How to Install from GitHub
+
+### Step 1 – Install the `devtools` package (do this once)
+
+Open R or RStudio and run:
+
+```r
+install.packages("devtools")
+```
+
+### Step 2 – Install `SundusGenome1` directly from GitHub
+
+```r
+library(devtools)
+install_github("sundusjasim897-boop/SundusGenome1")
+```
+
+### Step 3 – Load the package
+
+```r
+library(SundusGenome1)
+```
+
+---
+
+## How to Use the Package
+
+### 1. Create a `Genome` object
+
+Use `new()` to create an instance of the `Genome` S4 class.  
+The class has three slots:
+
+| Slot | Type | Description |
+|---|---|---|
+| `genome_name` | character | Name of the genome |
+| `total_chromosomes` | numeric | Total number of chromosomes |
+| `total_proteins` | numeric | Total number of proteins |
+
+```r
+# Example 1 – Human genome
+human <- new("Genome",
+             genome_name       = "Human",
+             total_chromosomes = 23,
+             total_proteins    = 20000)
+
+# Example 2 – Mouse genome
+mouse <- new("Genome",
+             genome_name       = "Mouse",
+             total_chromosomes = 20,
+             total_proteins    = 22000)
+```
+
+### 2. Access slot values
+
+```r
+human@genome_name        # "Human"
+human@total_chromosomes  # 23
+human@total_proteins     # 20000
+```
+
+### 3. Call `avgProteinPerCh()`
+
+```r
+avgProteinPerCh(human)   # returns 870
+avgProteinPerCh(mouse)   # returns 1100
+```
+
+The method computes:
+
+```
+round( total_proteins / total_chromosomes )
+```
+
+---
+
+## Full Working Example
+
+```r
+library(devtools)
+install_github("sundusjasim897-boop/SundusGenome1")
+library(SundusGenome1)
+
+# Create genome objects
+human <- new("Genome",
+             genome_name       = "Human",
+             total_chromosomes = 23,
+             total_proteins    = 20000)
+
+ecoli <- new("Genome",
+             genome_name       = "E. coli",
+             total_chromosomes = 1,
+             total_proteins    = 4300)
+
+# Compute averages
+avgProteinPerCh(human)   # 870
+avgProteinPerCh(ecoli)   # 4300
+```
+
+---
+
+## Package Structure
+
+```
+SundusGenome1/
+├── DESCRIPTION          # Package metadata
+├── NAMESPACE            # Exported classes and methods
+├── LICENSE              # MIT License
+├── README.md            # This file
+├── R/
+│   └── Genome.R         # S4 class definition and method
+└── man/
+    ├── Genome-class.Rd        # Documentation for the class
+    └── avgProteinPerCh.Rd     # Documentation for the method
+```
